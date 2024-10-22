@@ -13,7 +13,7 @@ class User extends Model{
     @Column({
         primaryKey: true,
         type:DataType.UUID,
-        defaultValue :DataType.UUID,
+        defaultValue :DataType.UUIDV4,
 
     })
     declare id:string
@@ -24,6 +24,12 @@ class User extends Model{
    
 })
 declare username:string
+
+@Column({ 
+    type:DataType.STRING,
+   
+})
+declare email:string
 
 
 @Column({ 

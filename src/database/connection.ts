@@ -11,9 +11,6 @@ const sequelize = new Sequelize(connString,{
     models: [__dirname + '/Models'], 
 });
 
-
-
-
 try {
     sequelize.authenticate()
     .then(()=>{
@@ -26,9 +23,12 @@ try {
     console.log(error)
 }
 
-sequelize.sync({force : false}).then(()=>{
-    console.log("synced !!")
-})
+// sequelize.sync({force : false}).then(()=>{
+//     console.log("synced !!")
+// })
+sequelize.sync({ alter: true }).then(() => {
+    console.log("Database & tables synced!");
+});
 
 
 
