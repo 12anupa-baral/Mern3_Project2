@@ -3,6 +3,8 @@ import User from "../database/Models/userModel";
 import sequelize from "../database/connection";
 import bcrypt from 'bcrypt';
 import generateToken from "../services/generateToken";
+import generateOtp from "../services/generateOtp";
+import sendMail from "../services/sendMail";
 class UserController {
     static async register(req: Request, res: Response) {
         //incoming user data receive 
@@ -75,6 +77,42 @@ class UserController {
 
         // if password also matches then token generation (jwt)
 
+    }
+
+    static async handleForgotPassword(req: Request,res: Response){
+        const {email} =req.body
+        if(!email)
+        {
+         return   res.status(400).json({
+            message:"please provide email"
+         })
+        }
+
+        const user =await User.findAll({
+            where:{
+                email:email
+            }
+        })
+
+        if(!user){
+            res.status(404).json({
+                email:"Email not registered"
+            })
+        }
+        //otp pathaunu parxa ,generate otp,send mail
+
+        const otp =generateOtp
+        sendMail({
+            to:email,
+            subject:"Reset Password",
+            text:`you just request to reset password ${otp}`
+            
+        })
+
+
+
+
+        
     }
 }
 export default UserController

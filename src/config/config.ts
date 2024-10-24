@@ -8,5 +8,7 @@ export const envConfig = {
     connectionString:process.env.CONNECTION_STRING,
     dialect: process.env.DIALECT ,
     jwt: process.env.JWT_SECRET_KEY ,
-    expiresIn: process.env.JWT_EXPIRES_IN
+    expiresIn: process.env.JWT_EXPIRES_IN,
+    email: process.env.EMAIL,
+    emailPassword:process.env.EMAILPASSWORD
 }
