@@ -1,6 +1,7 @@
 import express  from 'express'
 import './database/connection'
 import userRoute from './routes/userRoute'
+import User from './database/Models/userModel'
 
 const app = express()
 app.use(express.json())

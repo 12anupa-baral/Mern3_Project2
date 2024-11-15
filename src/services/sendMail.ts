@@ -16,7 +16,7 @@ const sendMail =async (data:Idata)=>{
     })
 
     const mailOptions ={
-        from:'baralanupa214@gmail.com',
+        from:"Anupa Baral<baralshilpa2@gmail.com>",
         to:data.to,
         subject:data.subject,
         text:data.text

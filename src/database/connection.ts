@@ -23,11 +23,10 @@ try {
     console.log(error)
 }
 
-// sequelize.sync({force : false}).then(()=>{
-//     console.log("synced !!")
-// })
-sequelize.sync({ alter: true }).then(() => {
+sequelize.sync({force : false, alter: true }).then(() => {
     console.log("Database & tables synced!");
+}).catch((error) => {
+    console.error("Error syncing database:", error);
 });
 
 
