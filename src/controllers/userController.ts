@@ -53,17 +53,17 @@ class UserController {
         }
 
         //Check whether that email already exist or not
-        const [data] =  await User.findAll({
-            where : {
-                email : email
-            }
-        })
-        if(data){
-             res.status(400).json({
-                message : "Please try again later !!!"
-            })
-            return
-        }
+        // const [data] =  await User.findAll({
+        //     where : {
+        //         email : email
+        //     }
+        // })
+        // if(data){
+        //      res.status(400).json({
+        //         message : "Please try again later !!!"
+        //     })
+        //     return
+        // }
         // check email exist or not
         const [user] = await User.findAll({
             where: {

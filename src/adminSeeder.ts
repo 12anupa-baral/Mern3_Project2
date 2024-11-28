@@ -1,5 +1,6 @@
 import { envConfig } from "./config/config"
 import User from "./database/Models/userModel"
+import bcrypt from 'bcrypt'
 const adminSeeder =async()=>{
     const [data]=await User.findAll({
         where:{
@@ -10,10 +11,11 @@ const adminSeeder =async()=>{
     if(!data){
     await User.create({
         username:envConfig.adminUsername,
-        password:envConfig.adminPassword,
+        password : bcrypt.hashSync(envConfig.adminPassword as string, 8), 
         email:envConfig.adminEmail,
-        role:"email",
+        role:"admin",
     })
+    console.log("Admin seeded !!!")
 }
 else{
     console.log("admin already seeded!!")
