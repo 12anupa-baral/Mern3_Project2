@@ -4,6 +4,8 @@ import userRoute from './routes/userRoute'
 import User from './database/Models/userModel'
 import categoryRoute from './routes/categoryRoute'
 import productRoute from './routes/productRoute'
+import OrderRoute from './routes/orderRoute'
+
 
 const app = express()
 app.use(express.json())
@@ -12,6 +14,7 @@ app.use(express.json())
 app.use("/api/auth",userRoute)
 app.use("/api/category",categoryRoute)
 app.use("/api/product",productRoute)
+app.use("/api/order",OrderRoute)
 
 
 
