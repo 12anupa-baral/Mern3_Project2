@@ -13,16 +13,16 @@ class Order extends Model{
     })
     declare id : string 
     @Column({
-        type : DataType.STRING, 
-        allowNull : false, 
-        validate : {
-            len : {
-                args : [10,10], 
-                msg : "Phone number must be 10 digits. 10 vanda sano thulo hunu vayena !"
-            }
-        }
-    })
-    declare phoneNumber : string 
+        type: DataType.STRING,
+        allowNull: false,
+        validate: {
+          len: {
+            args: [10, 10],
+            msg: "Phone number must be 10 digits. 10 vanda sano thulo hunu vayena!",
+          },
+        },
+      })
+      declare phoneNumber: string;
     @Column({
         type : DataType.STRING, 
         allowNull : false
