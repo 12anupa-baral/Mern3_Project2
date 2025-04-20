@@ -8,25 +8,27 @@ router
   .route("/")
   .post(
     userMiddleware.isUserLoggedIn,
-    userMiddleware.accessTo(Role.Customer),
+    userMiddleware.accessTo(Role.Customer, Role.Admin),
     errorHandler(CartController.addToCart)
   )
   .get(
     userMiddleware.isUserLoggedIn,
-    userMiddleware.accessTo(Role.Customer),
+    userMiddleware.accessTo(Role.Customer, Role.Admin),
     errorHandler(CartController.getCartItems)
-  )
+  );
 
-  router.route("/:productId")
+router
+  .route("/:productId")
   .delete(
     userMiddleware.isUserLoggedIn,
-    userMiddleware.accessTo(Role.Customer),
-      errorHandler(CartController.deleteCartItem))
-
-    .patch(
-    userMiddleware.isUserLoggedIn,
-    userMiddleware.accessTo(Role.Customer),
-    errorHandler(CartController.updateCartItemQuantity)
+    userMiddleware.accessTo(Role.Customer, Role.Admin),
+    errorHandler(CartController.deleteCartItem)
   )
+
+  .patch(
+    userMiddleware.isUserLoggedIn,
+    userMiddleware.accessTo(Role.Customer, Role.Admin),
+    errorHandler(CartController.updateCartItemQuantity)
+  );
   
 export default router;

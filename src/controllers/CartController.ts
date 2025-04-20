@@ -12,7 +12,7 @@ class CartController {
   async addToCart(req: AuthRequest, res: Response) {
     const userId = req.user?.id;
     const { productId, quantity } = req.body;
-    if (productId || !quantity) {
+    if (!productId || !quantity) {
       res.status(400).json({
         message: "Please provide productId,quantity",
       });
@@ -52,7 +52,7 @@ class CartController {
       include: [
         {
           model: Product,
-          attributes: ["id", "productName", "productPrice", "productImgUrl"],
+          attributes: ["id", "productName", "productPrice", "productImageUrl"],
         },
       ],
     });
