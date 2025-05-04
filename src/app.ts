@@ -11,13 +11,32 @@ import cors from "cors";
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://mern-proj2-frontend-ifj9.vercel.app",
+];
 
-// localhost:3000/api/auth/
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      } else {
+        return callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+
 app.use("/api/auth", userRoute);
 app.use("/api/category", categoryRoute);
 app.use("/api/product", productRoute);
 app.use("/api/order", OrderRoute);
 app.use("/api/cart", CartRoute);
+
+app.use(express.static("./src/uploads"));
 
 export default app;
